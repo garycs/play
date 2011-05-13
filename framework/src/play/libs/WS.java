@@ -603,7 +603,9 @@ public class WS extends PlayPlugin {
             try {
                 InputSource source = new InputSource(getStream());
                 source.setEncoding(encoding);
-                DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(); 
+                factory.setNamespaceAware(true); 
+                DocumentBuilder builder = factory.newDocumentBuilder();
                 builder.setEntityResolver(new NoOpEntityResolver());
                 return builder.parse(source);
             } catch (Exception e) {
